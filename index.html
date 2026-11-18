@@ -1,17 +1,427 @@
 <!doctype html>
 <html lang="en-CA">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CleanCanada | Trusted House &amp; Office Cleaning Across Canada</title>
-    <meta name="description" content="Insured, background-checked cleaners for homes and offices across Canada. Get an instant estimate, book online, and enjoy a 100% satisfaction guarantee." />
-    <meta property="og:title" content="CleanCanada | Trusted House &amp; Office Cleaning" />
-    <meta property="og:description" content="Insured, background-checked cleaners. Get an instant estimate and book online." />
-    <meta property="og:image" content="/images/og-image.jpg" />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  </head>
-  <body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CleanCanada | Trusted House &amp; Office Cleaning Across Canada</title>
+<meta name="description" content="Insured, background-checked cleaners for homes and offices across Canada. Get an instant estimate, book online, and enjoy a 100% satisfaction guarantee.">
+<meta property="og:title" content="CleanCanada | Trusted House & Office Cleaning">
+<meta property="og:image" content="images/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS: change the palette here ===== */
+:root{--bg:#fff;--soft:#f9f7f3;--sky:#e8f6fc;--fg:#10262e;--muted:#4b6068;--primary:#0a7a6c;--accent:#b6e63a;--border:#d5e6ea;--radius:20px;--shadow:0 10px 30px -12px rgba(10,122,108,.3)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--fg);background:var(--bg);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{line-height:1.2;letter-spacing:-.01em}
+:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+.wrap{width:min(1200px,100% - 2rem);margin-inline:auto}
+section{padding:72px 0}
+.sky{background:var(--sky)}.soft{background:var(--soft)}
+.head{text-align:center;max-width:640px;margin:0 auto 40px}
+.head h2{font-size:clamp(1.8rem,4vw,2.5rem)}.head p{color:var(--muted);margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:99px;border:2px solid var(--primary);background:var(--primary);color:#fff;font:600 .95rem Poppins,sans-serif;text-decoration:none;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn.out{background:#fff;color:var(--primary)}.btn.acc{background:var(--accent);border-color:var(--accent);color:var(--fg)}
+.btn.lg{padding:15px 32px;font-size:1.05rem}.btn.full{width:100%}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.grid{display:grid;gap:20px}
+.reveal{opacity:0;transform:translateY(16px);transition:.6s}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+.ph{background:linear-gradient(135deg,var(--sky),var(--soft))}
+/* navbar */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.logo{font-weight:800;font-size:1.25rem;color:var(--primary);text-decoration:none}
+.links{display:none;gap:20px;list-style:none;padding:0}
+.links a{text-decoration:none;font-size:.9rem;font-weight:500}.links a:hover{color:var(--primary)}
+.navr{display:flex;align-items:center;gap:8px}
+.call{display:none;font-weight:600;text-decoration:none;font-size:.9rem}
+.icon{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:#fff;display:grid;place-items:center;font-size:1.1rem;text-decoration:none;cursor:pointer}
+.getq{display:none}
+#menu{display:none;padding:8px 16px 20px;border-top:1px solid var(--border)}
+#menu.open{display:block}#menu a{display:block;padding:12px;border-radius:10px;text-decoration:none;font-weight:500}#menu a:hover{background:var(--sky)}
+@media(min-width:640px){.getq{display:inline-flex}}
+@media(min-width:768px){.call{display:block}.tap{display:none}}
+@media(min-width:1024px){.links{display:flex}#burger{display:none}#menu{display:none!important}}
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:0;background:url(images/hero-living-room.jpg) center/cover,var(--sky)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.86) 50%,rgba(255,255,255,.2) 100%)}
+.hero .wrap{display:grid;gap:16px;align-items:end;padding-top:56px}
+.hero h1{font-size:clamp(2.2rem,6vw,3.8rem)}
+.hero p{color:var(--muted);font-size:1.1rem;margin:18px 0 28px;max-width:540px}
+.cta{display:flex;flex-direction:column;gap:12px}
+.worker{position:relative;max-width:340px;margin:0 auto;display:flex;justify-content:center}
+.worker::before{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:110%;height:85%;border-radius:999px 999px 0 0;background:rgba(10,122,108,.15)}
+.worker img{position:relative;max-height:26rem;width:auto;object-fit:contain}
+@media(min-width:640px){.cta{flex-direction:row}}
+@media(min-width:768px){.hero .wrap{grid-template-columns:1.1fr .9fr;padding-top:96px}.hero .txt{padding-bottom:96px}.worker{max-width:440px}.worker img{max-height:34rem}}
+/* trust */
+.trust{background:var(--soft);padding:28px 0;border-bottom:1px solid var(--border)}
+.trust ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.trust li{display:flex;gap:12px;align-items:center;font-size:.85rem;line-height:1.3}.trust b{display:block}.trust small{color:var(--muted)}
+.dot{width:44px;height:44px;flex:none;border-radius:50%;background:rgba(10,122,108,.1);display:grid;place-items:center;font-size:1.2rem}
+@media(min-width:1024px){.trust ul{grid-template-columns:repeat(4,1fr)}}
+/* services */
+.svc{display:grid;gap:20px}.svc .card{transition:.25s}.svc .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.svc .dot{border-radius:16px;background:var(--sky);margin-bottom:14px}.svc p{color:var(--muted);font-size:.9rem;margin:8px 0 14px}
+.svc a{color:var(--primary);font-weight:600;font-size:.9rem;text-decoration:none}.svc a:hover{text-decoration:underline}
+@media(min-width:640px){.svc{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.svc{grid-template-columns:repeat(4,1fr)}}
+/* quote */
+.q{display:grid;gap:24px}
+@media(min-width:1024px){.q{grid-template-columns:1.4fr 1fr;align-items:start}.sticky{position:sticky;top:90px}}
+label,legend{font-size:.9rem;font-weight:500}
+fieldset{border:0;padding:0;min-width:0}
+.fld{display:grid;gap:6px;margin-bottom:16px}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#fff}
+.err{color:#b42318;font-size:.8rem;min-height:0}
+.step{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:14px;padding:10px 14px;margin-bottom:12px}
+.step div{display:flex;align-items:center;gap:12px}.step button{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:#fff;font-size:1.2rem;cursor:pointer}
+.step output{width:20px;text-align:center;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--primary)}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.opts label{display:flex;gap:8px;align-items:center;border:1px solid var(--border);border-radius:14px;padding:12px;cursor:pointer}
+.opts label:has(input:checked){border-color:var(--primary);background:var(--sky)}
+.opts input{accent-color:var(--primary);width:18px;height:18px}.opts small{margin-left:auto;color:var(--muted)}
+@media(min-width:640px){.opts.f{grid-template-columns:repeat(4,1fr)}.opts.a{grid-template-columns:repeat(2,1fr)}}
+.est{background:var(--primary);color:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:16px}
+.est strong{display:block;font-size:2.2rem;font-weight:800}.est small{opacity:.9}
+/* packages */
+.pk{display:grid;gap:24px}.pk .card{position:relative;display:flex;flex-direction:column;padding:28px}
+.pk .pop{border:2px solid var(--primary);box-shadow:var(--shadow)}
+.pk .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);padding:3px 14px;border-radius:99px;font-size:.75rem;font-weight:700}
+.pk .price{font-size:2.4rem;font-weight:800;color:var(--primary)}.pk ul{list-style:none;padding:0;margin:20px 0;flex:1;display:grid;gap:10px;font-size:.9rem}
+.pk li::before{content:"✓";color:var(--primary);font-weight:700;margin-right:8px}
+@media(min-width:768px){.pk{grid-template-columns:repeat(3,1fr)}.pk .pop{transform:translateY(-12px)}}
+.note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:28px}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;background:var(--sky);padding:5px;border-radius:99px;width:fit-content;max-width:100%;margin:0 auto 24px}
+.soft .tabs,.tabs.w{background:var(--sky)}
+.tabs button{border:0;background:transparent;padding:9px 16px;border-radius:99px;font:500 .88rem Poppins,sans-serif;cursor:pointer;color:var(--muted)}
+.tabs button[aria-selected=true]{background:var(--primary);color:#fff}
+/* before/after */
+.ba-box{max-width:880px;margin:0 auto}
+.ba{position:relative;aspect-ratio:16/10;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);cursor:ew-resize;user-select:none;touch-action:pan-y}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba-b{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.ba .t{position:absolute;top:12px;padding:4px 12px;border-radius:99px;font-size:.75rem;font-weight:700;z-index:2}
+.t.l{left:12px;background:rgba(16,38,46,.85);color:#fff}.t.r{right:12px;background:var(--accent)}
+.ba-line{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;transform:translateX(-50%);z-index:3;pointer-events:none;box-shadow:0 0 6px rgba(0,0,0,.3)}
+.ba-h{position:absolute;top:50%;left:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;color:var(--primary);display:grid;place-items:center;font-size:1.2rem;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.3);pointer-events:auto;cursor:grab}
+.fade{animation:fade .5s}@keyframes fade{from{opacity:0}to{opacity:1}}
+.info{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;background:#fff;border-radius:16px;padding:14px 18px;margin-top:16px}
+.info small{color:var(--primary);font-weight:500}.info span{color:var(--muted);font-size:.88rem}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;opacity:.7;background:none}
+.thumbs button[aria-pressed=true]{border-color:var(--primary);opacity:1}.thumbs img{aspect-ratio:4/3;width:100%;object-fit:cover}
+@media(min-width:640px){.thumbs{grid-template-columns:repeat(6,1fr)}}
+/* checklist */
+.cl{max-width:760px;margin:0 auto}.cl ul{list-style:none;padding:0;display:grid;gap:12px;font-size:.92rem}
+.cl li::before{content:"✔";color:var(--primary);margin-right:10px}
+@media(min-width:640px){.cl ul{grid-template-columns:1fr 1fr}}
+/* process / why */
+.steps{display:grid;gap:20px;list-style:none;padding:0}
+.steps li{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.steps b{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;margin-bottom:14px}
+.steps p{color:var(--muted);font-size:.9rem;margin-top:6px}
+@media(min-width:640px){.steps{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.steps{grid-template-columns:repeat(4,1fr)}}
+.why{display:grid;gap:36px;align-items:center}.why img{border-radius:24px;box-shadow:var(--shadow);width:100%;aspect-ratio:4/3;object-fit:cover}
+.why ul{list-style:none;padding:0;display:grid;gap:20px}.why li{display:flex;gap:12px}.why li::before{content:"✔";color:var(--primary);font-size:1.2rem}
+.why p{color:var(--muted);font-size:.9rem}
+@media(min-width:1024px){.why{grid-template-columns:1fr 1fr}}
+.stats{display:grid;gap:20px;margin-top:56px;background:var(--primary);color:#fff;border-radius:24px;padding:32px;text-align:center}
+.stats b{display:block;font-size:2.4rem;font-weight:800}@media(min-width:640px){.stats{grid-template-columns:repeat(3,1fr)}}
+/* areas */
+.areas{display:grid;gap:32px}.tags{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none}
+.tags li{background:#fff;border:1px solid var(--border);border-radius:99px;padding:8px 16px;font-size:.88rem;font-weight:500}
+.row{display:flex;gap:8px}.map{min-height:260px;border-radius:24px;display:grid;place-items:center;font-size:3.5rem;opacity:.9}
+#pcMsg{min-height:3rem;margin-top:14px;font-size:.92rem;font-weight:500}.ok{color:var(--primary)}.bad{color:#b42318}
+@media(min-width:1024px){.areas{grid-template-columns:1fr 1fr}}
+/* reviews, faq */
+.rev{display:grid;gap:20px}.rev .stars{color:#e0a800;letter-spacing:2px}.rev blockquote{margin:14px 0 18px;font-size:.92rem}
+.rev .who{display:flex;gap:12px;align-items:center}.rev img{width:44px;height:44px;border-radius:50%;object-fit:cover}.rev small{color:var(--muted);display:block}
+@media(min-width:640px){.rev{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.rev{grid-template-columns:repeat(4,1fr)}}
+details{background:#fff;border:1px solid var(--border);border-radius:16px;padding:0 20px;margin-bottom:12px}
+summary{cursor:pointer;padding:18px 0;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--primary)}details[open] summary::after{content:"–"}
+details p{color:var(--muted);padding-bottom:18px;font-size:.92rem}
+/* cta, contact, footer */
+.band{position:relative;isolation:isolate;color:#fff;text-align:center;padding:64px 0;background:url(images/office-clean.jpg) center/cover,var(--primary)}
+.band::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(10,122,108,.9)}
+.band h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:24px}.band .cta{align-items:center;justify-content:center}.band a.tel{font-size:1.2rem;font-weight:600;text-decoration:none}
+.contact{display:grid;gap:36px}.two{display:grid;gap:0 16px}
+@media(min-width:640px){.two{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+@media(min-width:1024px){.contact{grid-template-columns:1.4fr 1fr}}
+.info-l{list-style:none;padding:0;display:grid;gap:16px;margin-bottom:24px}.info-l li{display:flex;gap:12px;align-items:center}
+footer{background:var(--fg);color:#fff;padding:56px 0 0}
+.fg{display:grid;gap:32px}footer h3{font-size:1rem;margin-bottom:12px}footer ul{list-style:none;padding:0;display:grid;gap:8px;font-size:.88rem;opacity:.85}footer p{opacity:.85;font-size:.9rem}
+.legal{border-top:1px solid rgba(255,255,255,.15);margin-top:40px;padding:22px 0;text-align:center;font-size:.8rem;opacity:.8}
+@media(min-width:768px){.fg{grid-template-columns:repeat(2,1fr)}}@media(min-width:1024px){.fg{grid-template-columns:repeat(4,1fr)}}
+#toast{position:fixed;top:16px;left:50%;transform:translate(-50%,-150%);background:var(--primary);color:#fff;padding:14px 22px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:100;transition:.4s;max-width:92vw;opacity:0;visibility:hidden}
+#toast.show{transform:translate(-50%,0);opacity:1;visibility:visible}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px 12px;z-index:99}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+ <div class="wrap nav">
+  <a class="logo" href="#home">✨ CleanCanada</a>
+  <ul class="links" id="links"></ul>
+  <div class="navr">
+   <a class="call" href="tel:+18005550142">📞 1-800-555-0142</a>
+   <a class="btn getq" href="#quote">Get a Free Quote</a>
+   <a class="icon tap" href="tel:+18005550142" aria-label="Call 1-800-555-0142">📞</a>
+   <button class="icon" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">☰</button>
+  </div>
+ </div>
+ <nav id="menu" aria-label="Mobile"></nav>
+</header>
+
+<main id="main">
+<section class="hero" id="home">
+ <div class="wrap">
+  <div class="txt">
+   <h1>A Spotless Space, Without Lifting a Finger.</h1>
+   <p>Trusted, insured cleaners, flexible scheduling, and a 100% satisfaction guarantee for homes and offices across Canada.</p>
+   <div class="cta"><a class="btn lg" href="#quote">Get a Free Quote</a><a class="btn lg out" href="#contact">Book a Cleaning</a></div>
+  </div>
+  <div class="worker"><img src="images/hero-worker.png" alt="Smiling CleanCanada cleaner in a teal uniform holding a spray bottle and microfiber cloth"></div>
+ </div>
+</section>
+
+<div class="trust"><ul class="wrap" id="trust" aria-label="Why customers trust us"></ul></div>
+
+<section id="services"><div class="wrap reveal">
+ <div class="head"><h2>Cleaning Services for Every Space</h2><p>From weekly upkeep to one-time deep cleans, we have you covered.</p></div>
+ <div class="svc" id="svc"></div>
+</div></section>
+
+<section class="sky" id="quote"><div class="wrap reveal">
+ <div class="head"><h2>Get an Instant Estimate</h2><p>Answer a few quick questions and see your price range instantly.</p></div>
+ <form class="q" id="qform" novalidate>
+  <div class="card">
+   <div class="fld"><label for="svcType">Service type</label><select id="svcType"></select></div>
+   <div class="step"><span>Bedrooms</span><div><button type="button" data-t="beds" data-d="-1" aria-label="Fewer bedrooms">−</button><output id="beds" aria-live="polite">2</output><button type="button" data-t="beds" data-d="1" aria-label="More bedrooms">+</button></div></div>
+   <div class="step"><span>Bathrooms</span><div><button type="button" data-t="baths" data-d="-1" aria-label="Fewer bathrooms">−</button><output id="baths" aria-live="polite">1</output><button type="button" data-t="baths" data-d="1" aria-label="More bathrooms">+</button></div></div>
+   <div class="fld"><label for="sqft">Approx. square footage: <b id="sqftV">1,200 sq ft</b></label><input type="range" id="sqft" min="400" max="5000" step="100" value="1200"></div>
+   <fieldset><legend>Frequency</legend><div class="opts f" id="freq"></div><p class="note" style="text-align:left;margin:-8px 0 16px">Recurring clients save 10–15%.</p></fieldset>
+   <fieldset><legend>Add-ons</legend><div class="opts a" id="addons"></div></fieldset>
+  </div>
+  <div class="sticky">
+   <div class="est"><small>Your estimated price</small><strong id="est" aria-live="polite">$0 – $0</strong><small>Final price confirmed after a quick walkthrough or photo review.</small></div>
+   <div class="card">
+    <div class="fld"><label for="qn">Name</label><input type="text" id="qn" name="name" autocomplete="name"><small class="err"></small></div>
+    <div class="fld"><label for="qe">Email</label><input type="email" id="qe" name="email" autocomplete="email"><small class="err"></small></div>
+    <div class="fld"><label for="qp">Phone</label><input type="tel" id="qp" name="phone" autocomplete="tel"><small class="err"></small></div>
+    <div class="fld"><label for="qd">Preferred date</label><input type="date" id="qd" name="date"><small class="err"></small></div>
+    <button class="btn lg full" type="submit">Request This Quote</button>
+   </div>
+  </div>
+ </form>
+</div></section>
+
+<section id="pricing"><div class="wrap reveal">
+ <div class="head"><h2>Simple, Transparent Pricing</h2><p>Pick a package, or use the estimator above for an exact range.</p></div>
+ <div class="pk" id="pk"></div>
+ <p class="note">Eco-friendly and pet-safe products available on request.</p>
+</div></section>
+
+<section class="soft" id="results"><div class="wrap reveal">
+ <div class="head"><h2>See the Sparkle</h2><p>Drag the handle to compare real before and after results.</p></div>
+ <div class="tabs" id="cats" role="tablist" aria-label="Project categories"></div>
+ <div class="ba-box">
+  <div id="baWrap">
+   <div class="ba ph" id="ba">
+    <img id="baA" alt=""><div class="ba-b" id="baB"><img id="baBi" alt=""></div>
+    <span class="t l">Before</span><span class="t r">After</span>
+    <div class="ba-line" id="baL"><div class="ba-h" id="baH" role="slider" tabindex="0" aria-label="Before and after comparison" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">↔</div></div>
+   </div>
+   <div class="info"><div><h3 id="pTitle"></h3><small id="pCat"></small></div><div><span id="pLoc"></span> &nbsp; <span id="pDur"></span></div></div>
+  </div>
+  <div class="thumbs" id="thumbs"></div>
+ </div>
+</div></section>
+
+<section id="checklist"><div class="wrap reveal">
+ <div class="head"><h2>Our Cleaning Checklist</h2><p>Here's what's covered in every visit.</p></div>
+ <div class="tabs" id="clTabs" role="tablist" aria-label="Checklist areas"></div>
+ <div class="cl card" id="clBody" role="tabpanel"></div>
+</div></section>
+
+<section class="sky" id="process"><div class="wrap reveal">
+ <div class="head"><h2>How It Works</h2><p>Four easy steps to a cleaner home.</p></div>
+ <ol class="steps" id="steps"></ol>
+</div></section>
+
+<section id="about"><div class="wrap reveal">
+ <div class="head"><h2>Why Choose CleanCanada</h2></div>
+ <div class="why"><img src="images/cleaning-team.jpg" alt="Friendly CleanCanada cleaning team in teal uniforms" class="ph"><ul id="why"></ul></div>
+ <div class="stats"><div><b>10+</b>Years in Business</div><div><b>15,000+</b>Cleanings Completed</div><div><b>4.9★</b>Average Rating</div></div>
+</div></section>
+
+<section class="soft" id="areas"><div class="wrap reveal">
+ <div class="head"><h2>Where We Clean</h2><p>Enter your postal code to check if we serve your area.</p></div>
+ <div class="areas">
+  <div>
+   <ul class="tags" id="tags"></ul>
+   <form id="pcForm" style="margin-top:28px" novalidate><label for="pc">Postal code</label>
+    <div class="row" style="margin-top:6px"><input type="text" id="pc" placeholder="e.g. M5V 2T6" maxlength="7" autocomplete="postal-code"><button class="btn" type="submit">Check</button></div></form>
+   <p id="pcMsg" aria-live="polite"></p>
+  </div>
+  <div class="map ph" role="img" aria-label="Map of service areas (placeholder)">📍</div>
+ </div>
+</div></section>
+
+<section id="reviews"><div class="wrap reveal">
+ <div class="head"><h2>Loved by Canadian Homeowners</h2><p>Real feedback from happy customers.</p></div>
+ <div class="rev" id="rev"></div>
+</div></section>
+
+<section class="sky" id="faq"><div class="wrap reveal">
+ <div class="head"><h2>Frequently Asked Questions</h2></div>
+ <div style="max-width:760px;margin:auto" id="faqs"></div>
+</div></section>
+
+<div class="band"><div class="wrap"><h2>Ready for a Cleaner, Calmer Home?</h2>
+ <div class="cta"><a class="btn acc lg" href="#quote">Get a Free Quote</a><a class="tel" href="tel:+18005550142">📞 1-800-555-0142</a></div></div></div>
+
+<section id="contact"><div class="wrap reveal">
+ <div class="head"><h2>Book Your Cleaning</h2><p>Tell us what you need and we'll get back to you within one business day.</p></div>
+ <div class="contact">
+  <form class="card two" id="cform" novalidate>
+   <div class="fld"><label for="cn">Name</label><input type="text" id="cn" name="name" autocomplete="name"><small class="err"></small></div>
+   <div class="fld"><label for="ce">Email</label><input type="email" id="ce" name="email" autocomplete="email"><small class="err"></small></div>
+   <div class="fld"><label for="cp">Phone</label><input type="tel" id="cp" name="phone" autocomplete="tel"><small class="err"></small></div>
+   <div class="fld"><label for="cz">Postal code</label><input type="text" id="cz" name="postal" autocomplete="postal-code"><small class="err"></small></div>
+   <div class="fld"><label for="cs">Service needed</label><select id="cs" name="service"></select><small class="err"></small></div>
+   <div class="fld"><label for="cy">Property type</label><select id="cy"><option>Home</option><option>Condo</option><option>Office</option><option>Rental</option></select></div>
+   <div class="fld full"><label for="cd">Preferred date</label><input type="date" id="cd" name="date"><small class="err"></small></div>
+   <div class="fld full"><label for="cm">Message (optional)</label><textarea id="cm" rows="4"></textarea></div>
+   <button class="btn lg full" type="submit">Send Message</button>
+  </form>
+  <div>
+   <ul class="info-l">
+    <li><span class="dot">📞</span><a href="tel:+18005550142">1-800-555-0142</a></li>
+    <li><span class="dot">✉️</span><a href="mailto:hello@cleancanada.example">hello@cleancanada.example</a></li>
+    <li><span class="dot">📍</span>Toronto, Mississauga, Vancouver, Calgary &amp; Ottawa</li>
+    <li><span class="dot">🕒</span>Mon–Sat 7am–8pm, Sun 9am–5pm</li>
+   </ul>
+   <div class="map ph" style="min-height:200px" role="img" aria-label="Map (placeholder)">📍</div>
+  </div>
+ </div>
+</div></section>
+</main>
+
+<footer>
+ <div class="wrap fg">
+  <div><h3 style="font-size:1.25rem">✨ CleanCanada</h3><p>Fresh, reliable cleaning for Canadian homes and offices.</p></div>
+  <nav aria-label="Quick links"><h3>Quick Links</h3><ul id="fl"></ul></nav>
+  <div><h3>Services</h3><ul id="fs"></ul></div>
+  <form id="news"><h3>Cleaning Tips &amp; Offers</h3><label for="ne" class="skip">Email address</label>
+   <div class="row"><input type="email" id="ne" placeholder="you@example.com" required><button class="btn acc" type="submit">Join</button></div></form>
+ </div>
+ <div class="legal wrap"><p>Fully insured &amp; bonded · Business licence #000-000-000 (placeholder)</p><p>© <span id="yr"></span> CleanCanada. All rights reserved.</p></div>
+</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== EDITABLE CONTENT ===== */
+const NAV=[["Home","#home"],["Services","#services"],["Pricing","#pricing"],["Before & After","#results"],["About","#about"],["Reviews","#reviews"],["Contact","#contact"]];
+const TRUST=[["🛡️","Insured & Bonded","Covered up to $2M"],["✅","Background-Checked Cleaners","Vetted and trained"],["🌿","Eco-Friendly Products","Safe for kids and pets"],["👍","100% Satisfaction Guarantee","Not happy? We re-clean"]];
+const SERVICES=[["🏠","Regular House Cleaning","Weekly or bi-weekly upkeep so your home always feels fresh."],["✨","Deep Cleaning","A top-to-bottom reset for kitchens, bathrooms and hard-to-reach spots."],["🚚","Move-In / Move-Out Cleaning","Get your deposit back or start fresh in your new place."],["👷","Post-Construction Cleaning","Dust, debris and residue gone after renovations."],["🔑","Airbnb & Rental Turnovers","Fast, consistent turnovers between guests."],["🏢","Office & Commercial Cleaning","Professional cleaning for offices, clinics and retail."],["🛋️","Carpet & Upholstery Cleaning","Lift stains and allergens from carpets and furniture."],["🪟","Window Cleaning","Streak-free glass, inside and out."]];
+const PACKAGES=[{n:"Standard Clean",p:120,f:["Kitchen & bathroom cleaning","Dusting all surfaces","Vacuum & mop floors","Trash removal","Eco-friendly supplies included"]},{n:"Deep Clean",p:220,pop:1,f:["Everything in Standard","Baseboards & door frames","Inside microwave & cabinet fronts","Scrubbed grout & tile","Vents, fans & light fixtures"]},{n:"Move-In / Move-Out",p:260,f:["Everything in Deep Clean","Inside cabinets & drawers","Inside fridge & oven","Interior windows & tracks","Walls spot-cleaned"]}];
+const P=(id,t,c,l,d)=>({id,t,c,l,d,b:`images/${id}-before.jpg`,a:`images/${id}-after.jpg`});
+const CATS=["All","Kitchens","Bathrooms","Move-Out","Post-Construction"];
+const PROJECTS=[P("kitchen-1","Greasy Kitchen Revival","Kitchens","Toronto, ON","4 hours"),P("kitchen-2","Oven & Backsplash Deep Clean","Kitchens","Calgary, AB","3 hours"),P("bathroom-1","Shower Soap Scum Reset","Bathrooms","Vancouver, BC","2.5 hours"),P("bathroom-2","Vanity & Mirror Refresh","Bathrooms","Mississauga, ON","1.5 hours"),P("moveout-1","Move-Out Apartment Clean","Move-Out","Ottawa, ON","5 hours"),P("postconstruction-1","Post-Renovation Dust Removal","Post-Construction","Toronto, ON","8 hours")];
+const CHECKLISTS={"Kitchen":["Wipe counters & backsplash","Clean appliance exteriors","Clean sink & faucet","Wipe cabinet fronts","Clean stovetop","Empty trash & recycling","Sweep & mop floors","Wipe table & chairs"],"Bathrooms":["Scrub tubs & showers","Clean toilets inside & out","Polish mirrors & fixtures","Clean sinks & vanities","Wipe counters","Empty trash","Sweep & mop floors","Restock towels (if provided)"],"Bedrooms & Living":["Dust baseboards & vents","Dust furniture & décor","Make beds","Vacuum carpets & rugs","Mop hard floors","Wipe light switches","Clean glass & mirrors","Tidy surfaces"],"Deep Clean Extras":["Inside oven","Inside fridge","Interior windows & sills","Scrub grout lines","Wash walls & door frames","Clean ceiling fans","Under & behind appliances","Blinds & window tracks"]};
+const STEPS=[["Get Your Quote","Use the instant estimator or send us photos. It takes about two minutes."],["Pick a Date & Time","Choose a slot that suits you, including evenings and weekends."],["We Clean Your Space","A vetted, insured team arrives with all supplies and equipment."],["Enjoy & Rebook","Relax in a fresh space. Set up recurring visits and save 10–15%."]];
+const WHY=[["Vetted & trained cleaners","Every cleaner is background-checked and trained on our checklist."],["Eco-friendly supplies","Gentle, effective products that are safe for kids and pets."],["Flexible scheduling","Evenings and weekends available, with easy rescheduling."],["24-hour re-clean guarantee","Spot something we missed? We'll come back and fix it, free."]];
+const REVIEWS=[["Sarah M.","Toronto, ON",5,"The team was on time, friendly and thorough. My kitchen has never looked this good."],["David L.","Vancouver, BC",5,"Booked a move-out clean and got my full deposit back. Easy online quote too."],["Priya K.","Calgary, AB",5,"We use CleanCanada for our office every week. Reliable and professional every time."],["Marc T.","Ottawa, ON",4,"Great post-renovation clean. They even came back within a day to fix one small spot."]];
+const FAQS=[["Do I need to be home during the clean?","No. Many clients give us a key or door code. If you're home, we're happy to work around you."],["Do you bring your own supplies and equipment?","Yes. We bring everything, including eco-friendly, pet-safe products on request."],["Are your cleaners insured and background-checked?","Yes. All cleaners are background-checked, trained, and covered by our insurance and bonding."],["What if I'm not satisfied?","Tell us within 24 hours and we'll re-clean the area at no charge."],["How do I prepare for a cleaning?","Tidy away personal items and valuables, and let us know about pets or special instructions."],["What's your cancellation policy?","Cancel or reschedule free up to 24 hours before your appointment. Later changes may incur a fee."]];
+const AREAS=[["Toronto, ON",["M"]],["Mississauga, ON",["L4","L5"]],["Vancouver, BC",["V5","V6","V7"]],["Calgary, AB",["T1","T2","T3"]],["Ottawa, ON",["K1","K2"]]];
+/* Placeholder pricing logic — edit the numbers */
+const PRICING={base:{regular:["Regular Cleaning",80],deep:["Deep Clean",150],move:["Move-In / Move-Out",170],construction:["Post-Construction",240],office:["Office",110]},bedroom:20,bathroom:25,per100sqftOver1000:6,spread:.12,
+ freq:{once:["One-time",0],weekly:["Weekly",.15],biweekly:["Bi-weekly",.12],monthly:["Monthly",.1]},
+ addons:{fridge:["Inside fridge",35],oven:["Inside oven",40],windows:["Interior windows",45],laundry:["Laundry",30],pet:["Pet hair treatment",35],balcony:["Balcony",25]}};
+
+/* ===== HELPERS ===== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const img=(src,alt,cls="")=>`<img src="${src}" alt="${esc(alt)}" class="${cls}" loading="lazy" onerror="this.style.visibility='hidden'">`;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),4500)}
+
+/* ===== RENDER ===== */
+$("#links").innerHTML=NAV.map(([l,h])=>`<li><a href="${h}">${l}</a></li>`).join("");
+$("#menu").innerHTML=NAV.map(([l,h])=>`<a href="${h}">${l}</a>`).join("")+`<a class="btn full" href="#quote" style="color:#fff;margin-top:8px">Get a Free Quote</a>`;
+$("#burger").onclick=()=>{const o=$("#menu").classList.toggle("open");$("#burger").setAttribute("aria-expanded",o);$("#burger").textContent=o?"✕":"☰"};
+$$("#menu a").forEach(a=>a.onclick=()=>{$("#menu").classList.remove("open");$("#burger").textContent="☰"});
+$("#trust").innerHTML=TRUST.map(([i,t,s])=>`<li><span class="dot">${i}</span><div><b>${t}</b><small>${s}</small></div></li>`).join("");
+$("#svc").innerHTML=SERVICES.map(([i,t,d])=>`<div class="card"><span class="dot">${i}</span><h3>${t}</h3><p>${d}</p><a href="#contact">Learn more →<span class="skip"> about ${t}</span></a></div>`).join("");
+$("#pk").innerHTML=PACKAGES.map(p=>`<div class="card ${p.pop?"pop":""}">${p.pop?'<span class="tag">Most Popular</span>':""}<h3>${p.n}</h3><small style="color:var(--muted);margin-top:10px">Starting at</small><div class="price">$${p.p}</div><ul>${p.f.map(x=>`<li>${x}</li>`).join("")}</ul><a class="btn ${p.pop?"":"out"} lg" href="#quote">Get a Quote</a></div>`).join("");
+$("#steps").innerHTML=STEPS.map(([t,d],i)=>`<li><b>${i+1}</b><h3>${t}</h3><p>${d}</p></li>`).join("");
+$("#why").innerHTML=WHY.map(([t,d])=>`<li><div><h3 style="font-size:1.05rem">${t}</h3><p>${d}</p></div></li>`).join("");
+$("#tags").innerHTML=AREAS.map(a=>`<li>${a[0]}</li>`).join("");
+$("#rev").innerHTML=REVIEWS.map(([n,p,r,q],i)=>`<div class="card"><div class="stars" role="img" aria-label="${r} out of 5 stars">${"★".repeat(r)}${"☆".repeat(5-r)}</div><blockquote>“${q}”</blockquote><div class="who">${img(`images/avatar-${i+1}.jpg`,"Photo of "+n,"ph")}<div><b>${n}</b><small>${p}</small></div></div></div>`).join("");
+$("#faqs").innerHTML=FAQS.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+$("#fl").innerHTML=NAV.map(([l,h])=>`<li><a href="${h}">${l}</a></li>`).join("");
+$("#fs").innerHTML=SERVICES.slice(0,6).map(s=>`<li>${s[1]}</li>`).join("");
+$("#cs").innerHTML='<option value="">Select a service</option>'+SERVICES.map(s=>`<option>${s[1]}</option>`).join("");
+$("#yr").textContent=new Date().getFullYear();
+
+/* ===== TABS (generic) ===== */
+function tabs(el,names,onPick){el.innerHTML=names.map((n,i)=>`<button role="tab" type="button" aria-selected="${i==0}">${n}</button>`).join("");
+ const bs=[...el.children];const pick=i=>{bs.forEach((b,j)=>{b.setAttribute("aria-selected",i==j);b.tabIndex=i==j?0:-1});onPick(names[i])};
+ bs.forEach((b,i)=>{b.onclick=()=>pick(i);b.onkeydown=e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k){const n=(i+k+bs.length)%bs.length;pick(n);bs[n].focus()}}});pick(0)}
+tabs($("#clTabs"),Object.keys(CHECKLISTS),n=>$("#clBody").innerHTML=`<ul>${CHECKLISTS[n].map(x=>`<li>${x}</li>`).join("")}</ul>`);
+
+/* ===== BEFORE / AFTER ===== */
+let list=PROJECTS,cur=PROJECTS[0],pos=50,drag=false,hinted=false;
+const setPos=v=>{pos=Math.max(0,Math.min(100,v));$("#baB").style.clipPath=`inset(0 ${100-pos}% 0 0)`;$("#baL").style.left=pos+"%";$("#baH").setAttribute("aria-valuenow",Math.round(pos))};
+function show(p){cur=p;const w=$("#baWrap");w.classList.remove("fade");void w.offsetWidth;w.classList.add("fade");
+ $("#baA").src=p.a;$("#baA").alt="After: "+p.t;$("#baBi").src=p.b;$("#baBi").alt="Before: "+p.t;
+ $("#pTitle").textContent=p.t;$("#pCat").textContent=p.c;$("#pLoc").textContent="📍 "+p.l;$("#pDur").textContent="🕒 "+p.d;
+ $$("#thumbs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id==p.id));setPos(50)}
+function thumbs(){$("#thumbs").innerHTML=list.map(p=>`<button type="button" data-id="${p.id}" aria-label="Show ${p.t}" aria-pressed="false"><img src="${p.a}" alt="" class="ph" onerror="this.style.visibility='hidden'"></button>`).join("");
+ $$("#thumbs button").forEach(b=>b.onclick=()=>show(list.find(p=>p.id==b.dataset.id)))}
+tabs($("#cats"),CATS,c=>{list=c=="All"?PROJECTS:PROJECTS.filter(p=>p.c==c);thumbs();show(list[0])});
+const ba=$("#ba"),move=x=>{const r=ba.getBoundingClientRect();setPos((x-r.left)/r.width*100)};
+ba.onpointerdown=e=>{drag=true;ba.setPointerCapture(e.pointerId);move(e.clientX)};ba.onpointermove=e=>drag&&move(e.clientX);ba.onpointerup=ba.onpointercancel=()=>drag=false;
+$("#baH").onkeydown=e=>{const s=e.shiftKey?10:5,m={ArrowLeft:pos-s,ArrowDown:pos-s,ArrowRight:pos+s,ArrowUp:pos+s,Home:0,End:100}[e.key];if(m!==undefined){e.preventDefault();setPos(m)}};
+new IntersectionObserver(([e],io)=>{if(!e.isIntersecting||hinted)return;hinted=true;io.disconnect();if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ const t0=performance.now(),tick=t=>{const k=(t-t0)/1400;if(k>=1||drag)return setPos(50);setPos(50+Math.sin(k*Math.PI*2)*12);requestAnimationFrame(tick)};requestAnimationFrame(tick)},{threshold:.6}).observe(ba);
+
+/* ===== QUOTE CALCULATOR ===== */
+$("#svcType").innerHTML=Object.entries(PRICING.base).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("");
+$("#freq").innerHTML=Object.entries(PRICING.freq).map(([k,v],i)=>`<label><input type="radio" name="freq" value="${k}" ${i==0?"checked":""}>${v[0]}</label>`).join("");
+$("#addons").innerHTML=Object.entries(PRICING.addons).map(([k,v])=>`<label><input type="checkbox" value="${k}">${v[0]}<small>+$${v[1]}</small></label>`).join("");
+const st={beds:2,baths:1};
+function calc(){const sq=+$("#sqft").value,f=$("input[name=freq]:checked").value;
+ const add=$$("#addons input:checked").reduce((s,i)=>s+PRICING.addons[i.value][1],0);
+ const sub=PRICING.base[$("#svcType").value][1]+st.beds*PRICING.bedroom+st.baths*PRICING.bathroom+Math.max(0,sq-1000)/100*PRICING.per100sqftOver1000+add;
+ const tot=sub*(1-PRICING.freq[f][1]),r=n=>Math.round(n/5)*5,lo=r(tot*(1-PRICING.spread)),hi=r(tot*(1+PRICING.spread));
+ $("#sqftV").textContent=sq.toLocaleString()+" sq ft";$("#est").textContent=`$${lo} – $${hi}`;return[lo,hi]}
+$$(".step button").forEach(b=>b.onclick=()=>{const t=b.dataset.t,min=t=="beds"?0:1,max=t=="beds"?8:6;st[t]=Math.max(min,Math.min(max,st[t]+ +b.dataset.d));$("#"+t).textContent=st[t];calc()});
+$("#qform").addEventListener("input",calc);calc();
+
+/* ===== FORMS ===== */
+const RULES={name:v=>v.trim().length>=2||"Please enter your name",email:v=>/^\S+@\S+\.\S+$/.test(v)||"Enter a valid email address",phone:v=>v.replace(/\D/g,"").length>=10||"Enter a valid phone number",date:v=>!!v||"Pick a preferred date",postal:v=>/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/.test(v.trim())||"Enter a valid postal code",service:v=>!!v||"Choose a service"};
+function validate(f){let ok=true;$$(`#${f.id} [name]`).forEach(i=>{const r=RULES[i.name]?.(i.value),e=i.parentElement.querySelector(".err");const bad=r!==true&&r!==undefined;if(e)e.textContent=bad?r:"";i.setAttribute("aria-invalid",bad);if(bad)ok=false});return ok}
+$("#qform").onsubmit=e=>{e.preventDefault();if(!validate(e.target))return;const[l,h]=calc();toast(`Quote request sent! Estimated $${l}–$${h}. We'll email ${$("#qe").value} shortly.`);e.target.querySelectorAll("input[type=text],input[type=email],input[type=tel],input[type=date]").forEach(i=>i.value="")};
+$("#cform").onsubmit=e=>{e.preventDefault();if(!validate(e.target))return;toast(`Message sent! Thanks ${$("#cn").value}, we'll reply within one business day.`);e.target.reset()};
+$("#news").onsubmit=e=>{e.preventDefault();toast("You're subscribed! Watch your inbox for cleaning tips and offers.");e.target.reset()};
+$("#pcForm").onsubmit=e=>{e.preventDefault();const c=$("#pc").value.replace(/\s/g,"").toUpperCase(),m=$("#pcMsg");
+ if(!/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(c)){m.className="bad";m.textContent="Enter a valid Canadian postal code (e.g. M5V 2T6).";return}
+ const a=AREAS.find(a=>a[1].some(p=>c.startsWith(p)));
+ if(a){m.className="ok";m.textContent=`✔ We serve your area! ${a[0].split(",")[0]} cleaners are ready to book.`}else{m.className="";m.innerHTML='Not yet, but <a href="#contact">contact us</a> and we\'ll let you know when we expand.'}};
+
+/* ===== SCROLL REVEAL ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});
+$$(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
 </html>
